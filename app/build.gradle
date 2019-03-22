@@ -8,8 +8,8 @@ android {
         applicationId "com.litemint.app"
         minSdkVersion 24
         targetSdkVersion 26
-        versionCode 111
-        versionName "1.1.1"
+        versionCode 120
+        versionName "1.2.0"
     }
     buildTypes {
         release {
