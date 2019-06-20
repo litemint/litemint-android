@@ -94,9 +94,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MobileAds.initialize(this, "ca-app-pub-9425836158342481~1692235987");
+        MobileAds.initialize(this, "ca-app-pub-3044694709287906~7392775911");
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-9425836158342481/7491357576");
+        mInterstitialAd.setAdUnitId("ca-app-pub-3044694709287906/2547643345");
         //mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712"); // TEST AD!!
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
         mInterstitialAd.setAdListener(new AdListener() {
