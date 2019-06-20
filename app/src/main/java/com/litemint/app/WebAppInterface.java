@@ -67,6 +67,17 @@ public class WebAppInterface {
         });
     }
 
+    /** show Ad */
+    @JavascriptInterface
+    public void showAd() {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                mActivity.showAd();
+            }
+        });
+    }
+
     /** Show a toast from the web page */
     @JavascriptInterface
     public void showToast(String toast) {

@@ -27,6 +27,10 @@ import android.content.ClipboardManager;
 import android.content.ClipData;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int RC_BARCODE_CAPTURE = 9001;
     private static final String TAG = "BarcodeMain";
     private static final String mChannelId = "Payments";
+    private InterstitialAd mInterstitialAd;
 
     private void createNotificationChannel() {
         // Create the NotificationChannel (API 26+)
@@ -89,6 +94,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        MobileAds.initialize(this, "ca-app-pub-9425836158342481~1692235987");
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-9425836158342481/7491357576");
+        //mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712"); // TEST AD!!
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                // Load the next interstitial.
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            }
+        });
+
         int titleBarHeight = getStatusBarHeight();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
@@ -119,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
         mWebView.setWebViewClient(new AppWebViewClient());
 
         if (savedInstanceState == null) {
-            mWebView.loadUrl("https://app.litemint.com/?flavor=pepper&v=121");
+            mWebView.loadUrl("https://app.litemint.com/?flavor=pepper&v=130");
         }
     }
 
@@ -143,6 +161,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    public void showAd() {
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
     }
 
     @Override
