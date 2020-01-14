@@ -25,6 +25,7 @@ import android.app.NotificationManager;
 import android.view.WindowManager;
 import android.content.ClipboardManager;
 import android.content.ClipData;
+import android.content.pm.ActivityInfo;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.ads.MobileAds;
@@ -59,6 +60,14 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(BarcodeCaptureActivity.AutoFocus, true);
         intent.putExtra(BarcodeCaptureActivity.UseFlash, false);
         startActivityForResult(intent, RC_BARCODE_CAPTURE);
+    }
+
+    public void lockOrientation(){
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+
+    public void unlockOrientation(){
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
     }
 
     public int getStatusBarHeight() {
@@ -137,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         mWebView.setWebViewClient(new AppWebViewClient());
 
         if (savedInstanceState == null) {
-            mWebView.loadUrl("https://app.litemint.com/?flavor=pepper&v=130");
+            mWebView.loadUrl("https://app.litemint.com/?flavor=pepper&v=131");
         }
     }
 

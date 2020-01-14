@@ -173,6 +173,28 @@ public class WebAppInterface {
         });
     }
 
+    /** Lock orientation */
+    @JavascriptInterface
+    public void lockOrientation(){
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                mActivity.lockOrientation();
+            }
+        });
+    }
+
+    /** Unlock orientation */
+    @JavascriptInterface
+    public void unlockOrientation(){
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                mActivity.unlockOrientation();
+            }
+        });
+    }
+
     /** Store item */
     @JavascriptInterface
     public void setStorageItem(String item, String value){
