@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         mWebView.setWebViewClient(new AppWebViewClient());
 
         if (savedInstanceState == null) {
-            mWebView.loadUrl("https://app.litemint.com/?flavor=pepper&v=131");
+            mWebView.loadUrl("https://app.litemint.com/?flavor=pepper&v=132");
         }
     }
 
